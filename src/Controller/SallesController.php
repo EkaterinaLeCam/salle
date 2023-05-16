@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Ergonomie;
 use App\Entity\Logiciel;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -9,10 +8,11 @@ use App\Entity\Materiel;
 use App\Repository\SalleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class SallesController extends AbstractController
 {
@@ -27,23 +27,23 @@ class SallesController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('capacite')
 
-            ->add('material', EntityType::class, [
+            ->add('materiel', EntityType::class, [
                 'class' => Materiel::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+                'choice_label' => 'quantité',
+                
+                
             ])
-            ->add('software', EntityType::class, [
+            ->add('logiciel', EntityType::class, [
                 'class' => Logiciel::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+                'choice_label' => 'description',
+             
+                
             ])
-            ->add('ergonomics', EntityType::class, [
+            ->add('ergonomie', EntityType::class, [
                 'class' => Ergonomie::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+                'choice_label' => 'description',
+                
+                
             ])
             ->add('filter', SubmitType::class, [
                 'label' => 'Send',

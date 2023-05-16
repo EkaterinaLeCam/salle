@@ -3,27 +3,66 @@
 {% block title %}Salles{% endblock %}
 
 {% block body %}
-<h1>Liste des salles</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Chercher</h4>
+          {{ form_start(form) }}
+            <div class="form-group">
+              {{ form_label(form.capacite, 'capacite') }}
+              {{ form_widget(form.capacite, {'attr': {'class': 'form-control', 'placeholder': 'Enter Capacite'}}) }}
+            </div>
+            <div class="form-group">
+              <div >{{ form_label(form.materiel, 'materiel') }}
+              {{ form_widget(form.materiel, {'attr': {'class': 'form-control', 'placeholder': 'Enter Materiel'}}) }}</div>
+            </div>
+            <div class="form-group">
+              {{ form_label(form.logiciel, 'logiciel') }}
+              {{ form_widget(form.logiciel, {'attr': {'class': 'form-control', 'placeholder': 'Enter Logiciel'}}) }}
+            </div>
+            <div class="form-group">
+              {{ form_label(form.ergonomie, 'ergonomie') }}
+              {{ form_widget(form.ergonomie, {'attr': {'class': 'form-control', 'placeholder': 'Enter Ergonomics'}}) }}
+            </div>
+            <div class="text-center mt-3">{{ form_end(form) }}</div>
+            {% if salles|length > 0 %}
+              <hr>
+              <div class="results">
+                <h5 class="text-center">{{ salles|length }} Salles trouvée :</h5>
+              </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-	{% if salle is not empty %}
-		<ul>
-			{% for item in salle %}
-				<li>
-					{{ item.nom }}
-					{% if item.PMR %}
-						(accessible aux personnes à mobilité réduite)
-					{% endif %}
-					-
-					<a href="{{ path('salle_show_equipements', {'id': item.id}) }}">Voir les équipements</a>
-					-
-					<a href="{{ path('pre_reservation_new', {'id': item.id}) }}">Reserver</a>
-
-
-				</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<p>Aucune salle n'a été trouvée.</p>
-	{% endif %}
-	<a href="{{ path('app_logout') }}">Déconnexion</a>
+<div class="row mt-3 mx-5">
+  <div class="col-md-12">
+    <h1 class='text-center'>Salles</h1>
+    <hr>
+  </div>
+  {% for item in salles %}
+    <div class="col-md-4 mb-5">
+      <div class="shadow card card-bg rounded-3" style="width: 40rem;">
+        <div class="card-body">
+          <div class="text-center">
+            <h5 class="card-title">{{ item.nom }}
+              -
+              {{ item.capacite }}
+              personnes</h5>
+          </div>
+          <div class="text-center">
+            <p class="card-text">{{ item.estAccessiblePMP}}</p>
+          </div>
+          <div class="text-center mt-3">
+            <a href={{ path("app_salle", { id: item.id } )}} class="btn btn-primary">Voir la salle</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}

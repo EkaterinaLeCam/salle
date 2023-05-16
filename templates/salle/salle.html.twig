@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ oneSalle.nom }}{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <div class="card border-0 shadow-sm">
+    <img src="https://source.unsplash.com/random/1370x400/?workspace" class="card-img-top" alt="salle">
+    <div class="card-body">
+      <h1 class="card-title h3">{{ oneSalle.nom }}</h1>
+      <p class="card-text">{{ oneSalle.estAccessiblePMP }}</p>
+      <h2 class="card-subtitle h5 mt-4 mb-3">Capacité:</h2>
+      <p class="card-text">{{ oneSalle.capacite }} personnes</p>
+      <h2 class="card-subtitle h5 mt-4 mb-3">Logiciel:</h2>
+      <p class="card-text">
+        {% for equipement_logiciel in oneSalle.equipement_logiciel %}
+          {{ equipement_logiciel.id }}
+          {% if not loop.last %},{% endif %}
+        {% endfor %}
+      </p>
+      <h2 class="card-subtitle h5 mt-4 mb-3">Materiels:</h2>
+      <p class="card-text">
+     	
+      
+        {% for equipement_materiel in oneSalle.equipement_materiel %}
+          {{ equipement_materiel.nom }}
+          {% if not loop.last %},{% endif %}
+        {% endfor %}
+      </p>
+      <h2 class="card-subtitle h5 mt-4 mb-3">Ergonomie:</h2>
+      <p class="card-text">
+        {% for equipement_ergonomi in oneSalle.equipement_ergonomie %}
+          {{ equipement_ergonomi.nom }}
+          {% if not loop.last %},{% endif %}
+        {% endfor %}
+      </p>
+      <a href="{{ path('app_prereservation', {'id': oneSalle.id}) }}" class="btn btn-primary me-3">Réserver cette salle</a>
+      <a href="{{ path('app_salles') }}" class="btn btn-outline-primary">Voir toutes les salles</a>
+    </div>
+    <img src="https://source.unsplash.com/random/1370x400/?desk" class="card-img-bottom" alt="salle">
+  </div>
+</div>
+{% endblock %}

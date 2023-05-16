@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Salle;
 
+use App\Entity\Logiciel;
 use App\Repository\SalleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
