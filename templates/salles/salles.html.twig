@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salles{% endblock %}
+
+{% block body %}
+<h1>Liste des salles</h1>
+
+	{% if salle is not empty %}
+		<ul>
+			{% for item in salle %}
+				<li>
+					{{ item.nom }}
+					{% if item.PMR %}
+						(accessible aux personnes à mobilité réduite)
+					{% endif %}
+					-
+					<a href="{{ path('salle_show_equipements', {'id': item.id}) }}">Voir les équipements</a>
+					-
+					<a href="{{ path('pre_reservation_new', {'id': item.id}) }}">Reserver</a>
+
+
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>Aucune salle n'a été trouvée.</p>
+	{% endif %}
+	<a href="{{ path('app_logout') }}">Déconnexion</a>
+{% endblock %}
