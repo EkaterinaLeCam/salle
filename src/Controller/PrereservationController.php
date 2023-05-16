@@ -11,7 +11,7 @@ class PrereservationController extends AbstractController
     #[Route('/prereservation', name: 'app_prereservation')]
     public function index(): Response
     {
-        return $this->render('prereservation/index.html.twig', [
+        return $this->render('prereservation/prereservation.html.twig', [
             'controller_name' => 'PreReservationController',
         ]);
     }

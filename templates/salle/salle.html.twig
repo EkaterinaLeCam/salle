@@ -12,25 +12,29 @@
       <h2 class="card-subtitle h5 mt-4 mb-3">Capacité:</h2>
       <p class="card-text">{{ oneSalle.capacite }} personnes</p>
       <h2 class="card-subtitle h5 mt-4 mb-3">Logiciel:</h2>
-      <p class="card-text">
-        {% for equipement_logiciel in oneSalle.equipement_logiciel %}
-          {{ equipement_logiciel.id }}
+       <p class="card-text">
+        {% for logiciels in logiciel %}
+          {{ logiciels.nom }}
           {% if not loop.last %},{% endif %}
         {% endfor %}
       </p>
+     
       <h2 class="card-subtitle h5 mt-4 mb-3">Materiels:</h2>
+       
       <p class="card-text">
      	
       
-        {% for equipement_materiel in oneSalle.equipement_materiel %}
-          {{ equipement_materiel.nom }}
+        {% for materiels in materiel %}
+          {{ materiels.nom }}
           {% if not loop.last %},{% endif %}
         {% endfor %}
       </p>
+      
       <h2 class="card-subtitle h5 mt-4 mb-3">Ergonomie:</h2>
+      
       <p class="card-text">
-        {% for equipement_ergonomi in oneSalle.equipement_ergonomie %}
-          {{ equipement_ergonomi.nom }}
+        {% for ergonomies in ergonomie %}
+          {{ ergonomies.nom }}
           {% if not loop.last %},{% endif %}
         {% endfor %}
       </p>

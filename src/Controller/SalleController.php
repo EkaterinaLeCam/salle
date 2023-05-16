@@ -17,16 +17,22 @@ class SalleController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    #[Route('/salle/{id}', name: 'app_salle', methods: ['GET', 'POST'])]
+    #[Route('/salle/{id}', name: 'app_salle', methods: 'GET')]
     public function show($id): Response
     {
+        
         // Affiche la salle demandée dans le template dédie
         $oneSalle = $this->entityManager->getRepository(Salle::class)->findOneBy(['id' =>$id]);
-
+        $equipementMateriel=$oneSalle->getEquipementMateriel();
+        $equipementLogiciel=$oneSalle->getEquipementLogiciel();
+        $equipementErgonomie=$oneSalle->getEquipementErgonomie();
         return $this->render('salle/salle.html.twig', [
             //recupere la note demandée par son id
             'controller_name' => 'SalleController',
-            'oneSalle' => $oneSalle
+            'oneSalle' => $oneSalle,
+            'materiel'=>$equipementMateriel,
+            'logiciel'=>$equipementLogiciel,
+            'ergonomie'=>$equipementErgonomie
         ]);
     }
 }
