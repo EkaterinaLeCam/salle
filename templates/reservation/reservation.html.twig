@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <h1>Réserver la salle n°{{ oneSalle.id }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.dateDebut) }}
+        {{ form_row(form.dateFin) }}
+        {{ form_row(form.idSalle) }}
+        {{ form_row(form.validee) }}
+        <button type="submit" class="btn btn-primary">Réserver</button>
+    {{ form_end(form) }}
+
+{% endblock %}

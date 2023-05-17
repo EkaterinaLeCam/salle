@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Controller\SalleController;
 use App\Repository\SalleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -98,10 +98,14 @@ class Salle
         if (!$this->preReservations->contains($preReservation)) {
             $this->preReservations->add($preReservation);
             $preReservation->addSalle($this);
+            $preReservation->setIdSalle($this);
+            }
+    
+            return $this;
         }
 
-        return $this;
-    }
+      
+    
 
     public function removePreReservation(PreReservation $preReservation): self
     {

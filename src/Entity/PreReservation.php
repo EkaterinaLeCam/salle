@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use App\Entity\Salle;
 use App\Repository\PreReservationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -122,6 +124,12 @@ class PreReservation
     public function removeSalle(Salle $salle): self
     {
         $this->salle->removeElement($salle);
+
+        return $this;
+    }
+    public function setIdSalle(?Salle $idSalle): self
+    {
+        $this->idSalle = $idSalle;
 
         return $this;
     }
